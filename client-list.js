@@ -20,39 +20,75 @@ axios.get(`http://localhost:8000/api/clients/`)
     for (let i = 0; i < data.length; i++) {
       table += `
       
-      <tr id= "${data[i]._id}">
+      <tr id="${data[i]._id}">
       <td data-label="Jméno a příjmeni"><a href="client-detail.html">${data[i].firstName} ${data[i].lastName}</a></td>
       <td data-label="telefon">${data[i].streetNumber}, ${data[i].posteNumber}, ${data[i].city}</td>
-      <td data-label="button"><button id="deleteBtn" onclick="axios.delete" type="button" class="mr-2 btn btn-danger">Odstranit</button><button type="button" class="  btn btn-warning">Editovat</button></td>
+      <td data-label="button"><button  type="button" class="mr-2 btn btn-danger">Odstranit</button><button type="button" class="  btn btn-warning">Editovat</button></td>
     </tr>
-
-      `
-      
    
-    }
+      `
+        
+       
+                          
+     
+    //   deleteClient = (client) => {
+      
+      
+    //     if (confirm('Opravdu chcete smazat klienta?')) {
+    //       //   const id = id;
+    //         console.log(client);
+    //             axios.delete(`http://localhost:8000/api/clients/${client}`)
+    
+    //             .then(res => res.json())
+    //             .then(client => console.log(client))
+    //             .catch(error => console.error(error))
+             
+           
+    //           }
+              
+    //             console.log(client);
+            
+    //         }
+     
+       
+            }
+      
+
+   
+    
     table += `</tbody>
                 </table>`;
                 clientData.innerHTML = table;
-                
+                const id = document.querySelector("tr");
+                const deleteBtn = document.querySelectorAll(".btn-danger");
+                if (deleteBtn) {
+                    deleteBtn.forEach((btn) => {
+                        btn.addEventListener("click", (e) => {
+                            const id = e.target.parentElement.parentElement.id;
+                            console.log(id);
+                            if (confirm('Opravdu chcete smazat klienta?')) {
+                                axios.delete(`http://localhost:8000/api/clients/${id}`)
+                               
+                                .then(client => console.log(client))
+                                .then(() => location.reload())
+                                
+                                .catch(error => console.error(error))
+                            }
+                        });
+                    });
+                }
 
-                // const deletebtm=document.getElementById('deleteBtn');
-                // console.log(deletebtm);
-                // deletebtm.addEventListener('click', (e) => {
-                
-                           
-        axios.delete(`http://localhost:8000/api/clients/${id}`)
+                console.log(id);
 
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error))
-                })
-            
+    })
+   
+
+
+    
 
 
 
-    .catch((err) =>
-        console.log(err));
-        
+
     
         
             
