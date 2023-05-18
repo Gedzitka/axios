@@ -21,6 +21,10 @@ form.addEventListener('submit', (e) => {
     )
         .then((res) => 
             console.log(res + "klient přidán"))
+            .then( () => window.location.href="http://127.0.0.1:5500/clients-list.html")
+           
+           
+           
             .catch((err) =>
             console.log(err));
       });
