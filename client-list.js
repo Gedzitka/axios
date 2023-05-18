@@ -23,24 +23,48 @@ axios.get(`http://localhost:8000/api/clients/`)
       <tr id= "${data[i]._id}">
       <td data-label="Jméno a příjmeni"><a href="client-detail.html">${data[i].firstName} ${data[i].lastName}</a></td>
       <td data-label="telefon">${data[i].streetNumber}, ${data[i].posteNumber}, ${data[i].city}</td>
-      <td data-label="button"><button id="deleteBtn" type="button" class="mr-2 btn btn-danger">Odstranit</button><button type="button" class="  btn btn-warning">Editovat</button></td>
+      <td data-label="button"><button id="deleteBtn" onclick="axios.delete" type="button" class="mr-2 btn btn-danger">Odstranit</button><button type="button" class="  btn btn-warning">Editovat</button></td>
     </tr>
 
       `
+      
    
     }
     table += `</tbody>
                 </table>`;
                 clientData.innerHTML = table;
+                
+
+                // const deletebtm=document.getElementById('deleteBtn');
+                // console.log(deletebtm);
+                // deletebtm.addEventListener('click', (e) => {
+                
+                           
+        axios.delete(`http://localhost:8000/api/clients/${id}`)
+
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error))
+                })
+            
 
 
 
-
-    })
     .catch((err) =>
         console.log(err));
+        
+    
+        
+            
+        
+            
+
+
+
+
 
         
+
 
     
    
