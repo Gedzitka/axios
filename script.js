@@ -21,15 +21,40 @@ form.addEventListener('submit', (e) => {
     )
         .then((res) => 
             console.log(res + "klient přidán"))
-            .then( () => window.location.href="http://127.0.0.1:5500/clients-list.html")
+            .then( () => window.location.href=`http://127.0.0.1:5500/clients-list.html?id=1`)
            
            
            
             .catch((err) =>
             console.log(err));
       });
-            
+     
+    editClient=()=>{
+        const id = window.location.search.split('=id')[1];
+        console.log(id);
+        if (id) {
+            axios.get(`http://localhost:8000/api/clients/${id}`)
+            .then((res) => {
+                console.log(res.data);
+                const client=res.data;
+                console.log(client);
+                document.getElementById('firstName').value=client.firstName;
+                document.getElementById('lastName').value=client.lastName;
+                document.getElementById('email').value=client.email;
+                document.getElementById('phone').value=client.phone;
+                document.getElementById('streetNumber').value=client.streetNumber;
+                document.getElementById('city').value=client.city;
+                document.getElementById('posteNumber').value=client.posteNumber;
+            })
+            .catch((err) =>
+            console.log(err));
+        }
+    }
+    editClient();
+    
+    console.log("6467ff583b8449af708cb735");
 
+        
 
 
 

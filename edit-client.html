@@ -85,5 +85,24 @@
 </form>
 </div>
 <script src="script.js"></script>
+<!-- <script>
+  
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const clientId = urlParams.get('id');
+    console.log(clientId);
+
+    axios.get(`http://localhost:8000/api/clients/${clientId}`)
+        .then((res) => {
+            const client = res.data;
+
+            document.getElementById('firstName').value = client.firstName;
+            document.getElementById('lastName').value = client.lastName;
+            document.getElementById('streetNumber').value = client.streetNumber;
+            document.getElementById('posteNumber').value = client.posteNumber;
+            document.getElementById('city').value = client.city;
+        })
+        .catch(error => console.error(error));
+</script> -->
 </body>
 </html>
