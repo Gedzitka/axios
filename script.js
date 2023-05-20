@@ -30,7 +30,7 @@ form.addEventListener('submit', (e) => {
       });
      
     editClient=()=>{
-        const id = window.location.search.split('=id')[1];
+        const id = window.location.search.split('=')[1];
         console.log(id);
         if (id) {
             axios.get(`http://localhost:8000/api/clients/${id}`)
@@ -52,7 +52,9 @@ form.addEventListener('submit', (e) => {
     }
     editClient();
     
-    console.log("6467ff583b8449af708cb735");
+   
+    
+    
 
         
 
