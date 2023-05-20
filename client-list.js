@@ -3,6 +3,7 @@ axios.get(`http://localhost:8000/api/clients/`)
     
     .then((res) => {
         const data = res.data;
+        
 
 
 
