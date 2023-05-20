@@ -21,7 +21,7 @@ axios.get(`http://localhost:8000/api/clients/`)
       table += `
       
       <tr id="${data[i]._id}">
-      <td data-label="Jméno a příjmeni"><a href="client-detail.html">${data[i].firstName} ${data[i].lastName}</a></td>
+      <td data-label="Jméno a příjmeni"><a href="client-detail.html"><a id="detail" href="#">${data[i].firstName} ${data[i].lastName}</a></td>
       <td data-label="telefon">${data[i].streetNumber}, ${data[i].posteNumber}, ${data[i].city}</td>
       <td data-label="button"><button  type="button" class="mr-2 btn btn-danger">Odstranit</button><button id= "btnEdit" href="edit-client.html" type="button" class="  btn btn-warning">Editovat</button></td>
     </tr>
@@ -34,9 +34,22 @@ axios.get(`http://localhost:8000/api/clients/`)
                
                 const deleteBtn = document.querySelectorAll(".btn-danger");
                 const editBtn = document.querySelectorAll(".btn-warning");
+                const aDetail = document.querySelectorAll("#detail");
 
-                console.log(editBtn);
-            
+                console.log(aDetail);
+                detailClient=()=>{
+                    if (aDetail) {
+                        aDetail.forEach((btn) => {
+                btn.addEventListener("click", (e) => {
+                const id = e.target.parentElement.parentElement.id;
+                console.log(id);
+                window.location.href = `http://127.0.0.1:5500/client-detail.html?=${id}`;
+
+                });
+            });
+        }
+    }
+    detailClient();
                 editClient=()=>{
                         if (editBtn) {
                             editBtn.forEach((btn) => {
